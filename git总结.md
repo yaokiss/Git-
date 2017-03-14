@@ -134,8 +134,7 @@ $ git pull
 ![git常用命令速查表](https://github.com/Javedhd/notebook/blob/master/img/git%E9%80%9F%E6%9F%A5%E8%A1%A8.jpeg?raw=true)
 
 
-
-
+![速查表](https://github.com/yaokiss/Git-/blob/master/%E5%9B%BE/150803103365301.png?raw=true)
 
 
 
