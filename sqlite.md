@@ -80,7 +80,7 @@
 # 网址
  [English URL](https://www.sqlite.org/index.html)
 
- [中文参考网站]（http://www.runoob.com）
+ [中文参考网站]（http://www.runoob.com/）
 
 
 ![](http://www.runoob.com/wp-content/themes/runoob/assets/img/404.jpg)
