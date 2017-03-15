@@ -77,14 +77,10 @@
     sqlite> alter table oldname rename to newname;
 
 
+# 网址
+ [English URL](https://www.sqlite.org/index.html)
 
-
-
-
-
-
-
-
+ [中文参考网站]（http://www.runoob.com/sqlite/sqlite-tutorial.html）
 
 
 
