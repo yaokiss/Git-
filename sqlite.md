@@ -81,6 +81,56 @@
  [English URL](https://www.sqlite.org/index.html)
  
  [中文参考网站](http://www.runoob.com/sqlite/sqlite-tutorial.html)
+ 
+ 
+ # sqlite的一些常用的API
+ 
+1. sqlite里最常用到的是sqlite3 *类型。从数据打开开始，sqlite就要为了这个类型准备好内存，直到数据库关闭
+   整个过程都需要用到这个类型。当数据库打开时开始，这个类型的变量代表了你要操作的数据库，即句柄。
+1. int sqlite_open(char *path,sqlite3 **db);
+   功能：打开sqlite数据库
+   path:数据库文件路径（如果不存在，则创建）
+   db:指向sqlite句柄的指针
+   返回值：如果是SQLITE_OK则表示操作正常，相关的返回值sqlite定义了一些宏。具体这些宏的含义可以参考sqlite.h文件。
+1. int sqlite3_close(sqlite *db);
+   功能：关闭sqlite数据库
+   返回值：成功返回0.失败返回错误代码
+1. const char *sqlite3_errmsg(sqlite3 *db);
+   返回值：返回错误信息
+1. 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 ![](http://www.runoob.com/wp-content/themes/runoob/assets/img/404.jpg)
