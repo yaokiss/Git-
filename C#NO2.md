@@ -73,7 +73,99 @@ class Demo
 }
 ```
 
+除了int类型，还有很多其他的类型。
 
+```c#
+class Demo
+{
+    static void Main(string[] args)
+    {
+        //整型变量列举，注意初始化值不能超过取值范围。
+        int number = 10;
+        sbyte s = -3;
+        short sh = 32422;
+        uint ui = 15;
+        long lo = 12312324;
+        
+        //浮点变量列举
+        float f = 2.3453； //float类型的变量一定要在初始值后边加上后缀f，否则会被认为是double
+        double d = 122.33; //double类型不需要加任何后缀。
+        
+        bool bo = true; //bool类型变量只有两个值（true或者flase）
+        
+        char ch = 'a';
+        char c = '3';  //char类型的变量，用单引号，有且只有一个。
+        
+        string str = "asdasdad";
+        string s = "123";          //字符串类型，
+        
+        System.Console.WriteLine(s);   //可以把每个变量的值都打出来。
+    }
+}
+```
+
+* 注意：
+
+1. 在定义变量的时候，我们必须要明确这个变量的数据类型，来表示这个变量可以存储什么样的数据。
+
+1. 一个变量同一时间只能存储一个数据，当存储第二个的时候，之前存储的数据就会消失，突出了"变"
+
+1. 一般情况下，变量定义后要有初始化值（第一次给的变量值）
+
+1. 变量的初始化值的类型要和定义的数据类型相符，也就是等号左右两边的类型要想等。
+
+1. 浮点型变量在保留位数上有需要注意的地方，比如float为保留7位有效数字。这7位包括小数点前后的数字，举例：
+
+```c#
+class Demo
+{
+    static void Main(string[] args)
+    {
+        float f = 123.1212412f;
+        double d = 124.12423523;
+        System.Console.WriteLine(f);  //有效数字是7位，结果为123.1212，最后一位小数会四舍五入
+        
+        System.Console.WriteLine(d); // 有效数字是15~16位，都会保留
+      }
+}
+```
+
+在c#中可以定义无法 被改变的常量
+
+* const 数据类型 名称 = 初始化值。
+
+* const 是 关键字。表示值不可以被改变
+
+```c#
+class Demo
+{
+    static void Main(string[] args)
+    {
+        //  定义常量，使用const关键字，
+        const int num = 10;
+        num = 20;  // 提示常量无法被改变，在其他程序中也无法改变这个num的值
+    }
+}
+```
+
+
+# 练习题
+
+定义两个int类型的变量，打印最后结果，打印变量后可以再控制台上输出：x + x = x 、 x * x = x 、 x - x = x;
+
+```c#
+class Demo
+{
+    static void Main(string[] args)
+    {
+        int a = 3, b = 4;
+        System.Console.WriteLine("{0} + {1} = " +(a+b), a, b);
+        System.Console.WriteLine("{0} - {1} = " +(a-b), a, b);
+        System.Console.WriteLine("{0} * {1} = " +(a*b), a, b);
+    }
+}
+```
+ 
 
 
 
