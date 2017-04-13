@@ -413,7 +413,7 @@ class Output
 	static void Main(string[] args)
 	{
 		System.Console.WriteLine("How are you?");
-		System.Console.ReadLine();
+		System.Console.ReadLine(); //输入回车
 		System.Console.WriteLine("I`m fine thank you and you?");	
 	}	
 }
