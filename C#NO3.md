@@ -195,11 +195,100 @@ class OpeDemo3
 **在C#中用布尔类型的值来表示'是'(true)、'否'(false), 所以通过运算符运算得到的结果一定是布尔值（bool）**
 
 
+### 逻辑运算符
 
+逻辑运算符是用来连接两个布尔值（或结果是布尔值的表达式），可以将两个布尔值进行运算
 
+![](http://nts.newbieol.com/static/k30/unity_csharp/5,%E8%BF%90%E7%AE%97%E7%AC%A6/images/4.png)
 
+```
+ &   逻辑与运算
+ |   逻辑或运算
+ ^   逻辑异或运算
+ &&  双与运算符
+ ||  双或运算符
+ !   逻辑非运算
+```
 
+```C#
+class Demo
+{
+  public static void Main(string[] args)
+  {
+  	int x = 4;
+	System.Console.WriteLine(x > 3 & x < 5);//true
+	System.Console.WriteLine(x < 3 & x < 5);//false
+	System.Console.WriteLine(x < 3 & x > 5);//false
 
+	//System.Console.WriteLine(true & false);这样写也可以
+
+	//逻辑或运算按照上面的格式自己举例总结。
+
+	System.Console.WriteLine(!!true);
+  }
+}
+```
+
+```C#
+/*
+逻辑运算符：连接两个布尔值或者结果是布尔值的表达式的。
+
+3 < x <５
+可以使用逻辑运算符将两个式子连接
+3 < x
+x < 5
+
+逻辑与运算：&
+运算特点：
+true && true = true;
+true && false = false;
+false && true = false;
+false & false = false;
+
+运算规律：
+当符号两边有一边是false，结果一定是false；只有两边都是true，结果才是true
+
+双与运算符：&&
+& 和 && 的运算结果一模一样
+& 和 && 的区别：&& 具有短路效果。
+*/
+class OpeDemo4
+{
+  static void Main(string[] args)
+  {
+		int x = 4;
+		
+		System.Console.WriteLine(3 < x && x < 5);
+		
+		System.Console.WriteLine("---------");
+		System.Console.WriteLine(!!!true);
+  }
+}
+```
+* 要注意 &和&&、|和||的区别：&&运算符进行运算时，如果运算符左边为false，那么右边无论是true还是false都不予计算，直接得出结果为false；||运算符进行运算时，如果运算符左边true，那么右边无论是true还是false都不予计算，直接得出结果为true。以上效果都可以叫做短路效果
+
+### 三元运算符
+
+三元运算符又可以叫三目运算符。表示三个元素参与运算的符号。
+
+![](http://nts.newbieol.com/static/k30/unity_csharp/5,%E8%BF%90%E7%AE%97%E7%AC%A6/images/5.png)
+
+三元运算符的使用格式： 条件表达式 ？ 数据1 ： 数据2
+
+```C#
+class OpeDemo5
+{
+  public static void Main(string[] args)
+  {
+	//int a = (3 > 4) ? 100 : 200; //冒号两边可以是具体数据
+	//System.Console.WriteLine(a);//结果为200
+
+	bool a = 3 > 4 ? (3 > 4) : 3 < 4;//冒号两边可以是表达式，但要明确表达式结果的类型
+	System.Console.WriteLine(a);//结果为true
+  }
+}
+```
+条件表达式的结果为布尔值的表达式
 
 
 
