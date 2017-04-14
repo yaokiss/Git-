@@ -111,7 +111,7 @@ calss Demo
 
 ### 赋值运算符
 
-![](http://nts.newbieol.com/static/k30/unity_csharp/5,%E8%BF%90%E7%AE%97%E7%AC%A6/images/2.png)
+![](http://i4.buimg.com/591195/e398e3c8036357c6.png)
 
 ```
  =   将右边的值赋值给左边的变量
