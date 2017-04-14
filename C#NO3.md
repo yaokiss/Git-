@@ -288,11 +288,40 @@ class OpeDemo5
   }
 }
 ```
+```C#
+/*
+三元运算符
+?:			条件表达式 ? 数据1 : 数据2      3 > 4
+
+条件表达式：无论条件表达式写的多复杂，最终只有一个结果，就是布尔值
+*/
+class OpeDemo5
+{
+  static void Main(string[] args)
+  {
+		//三元运算符。
+		int a = (3 > 4) ? 100 / 2 : 200 / 2;
+		System.Console.WriteLine(a);
+  }
+}
+```
 条件表达式的结果为布尔值的表达式
 
+### 位运算符
 
+位运算符主要针对二进制进行运算
 
+![](http://nts.newbieol.com/static/k30/unity_csharp/5,%E8%BF%90%E7%AE%97%E7%AC%A6/images/6.png)
 
+```
+&    与运算
+ |    或运算
+ ^    异或运算
+ <<    左位移
+ >>    右位移
+ ~    取反
+```
+![](http://i4.buimg.com/591195/4ac3d9a61d6018d5.png)
 
 
 
