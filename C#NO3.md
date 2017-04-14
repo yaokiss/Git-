@@ -305,6 +305,26 @@ class OpeDemo5
   }
 }
 ```
+```C#
+//用三元运算符求出两个数中较大的一个
+class Sanyuan
+{
+	static void Main(string[] args)
+	{
+		int i = 2, j = 3,k = 4;
+		int a = (i > j)? i : j;
+		System.Console.WriteLine("i = "+i + ",j = "+j);
+		System.Console.WriteLine(a);	
+		
+		//用三元运算求出三个数中较大的一个
+		int b = (i > j) ?((i > k) ? i : k) : ((j > k) ? j : k);
+				
+		System.Console.WriteLine(b);
+		
+	}	
+}
+```
+
 条件表达式的结果为布尔值的表达式
 
 ### 位运算符
@@ -498,13 +518,139 @@ class Work
 }
 ```
 
+**进制转换**
+
+二进制101101转换为十进制
+
+```
+1*2^5 + 0*2^4 + 1*2^3 +1*2^2 + 0*2^1 + 1*2^0
+ 32   +    0   +   8  +   4  +   0   +   1  = 45
+```
+
+十进制15转换为二进制
+```
+15 = 2*7+1
+ 7 = 2*3+1
+ 3 = 2*1+1
+ 1 = 2*0+1
+
+ 15的二进制是1111
+ ```
 
 
+## If语句
 
+```C#
+/*
+流程控制：分支结构、循环结构
+分支结构：判断结构和选择结构。
 
-
-
-
+判断结构：3种
+*/
+class IfDemo
+{
+  static void Main(string[] args)
+  {
+		/*
+		第一种格式
+		if(条件表达式)
+		{
+		  执行语句;
+		}
+		
+		int a = 1;
+		if(a < 3)
+		{
+			System.Console.WriteLine("hello");
+		}
+		System.Console.WriteLine("ok");
+		*/
+		
+		/*
+		第二种格式：
+		if(条件表达式)
+		{
+		  执行语句;
+		}
+		else  否则
+		{
+		  执行语句;
+		}
+				
+		
+		int a = 1;
+		if(a < 3) 
+		{
+			System.Console.WriteLine("hello");
+		}
+		else
+		{
+			System.Console.WriteLine("ok");
+		}
+		System.Console.WriteLine("ole");*/
+		/*int a = 1, b;
+		
+		if(a < 3)
+		{
+			System.Console.WriteLine("100");
+		}
+		else
+		{
+			System.Console.WriteLine("200");
+		}
+		
+		//b = (a < 3) ? System.Console.WriteLine("100") : System.Console.WriteLine("200")
+		
+		System.Console.WriteLine(b);*/
+		
+		/*
+		第三种格式：
+		if(条件表达式)
+		{
+		  执行语句;
+		}
+		else if(条件表达式)
+		{
+		  执行语句；
+		}
+		.
+		.
+		else
+		{
+		  执行语句；
+		}
+			
+		
+		int a = 3;
+		if(a > 1)
+		{
+			System.Console.WriteLine("A");
+		}	
+		
+		
+		if(a > 2)
+		{
+			System.Console.WriteLine("B");
+		}
+		else if(a > 3)
+		{
+			System.Console.WriteLine("C");
+		}
+		else
+		{
+			System.Console.WriteLine("D");
+		}
+		
+		System.Console.WriteLine("E");*/
+		
+		int a = 3;
+		if(a < 1);
+		{
+			System.Console.WriteLine(a);	
+		}
+  }
+}
+```
 
 
 
