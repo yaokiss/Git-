@@ -111,7 +111,7 @@ calss Demo
 
 ### 赋值运算符
 
-![](http://i4.buimg.com/591195/e398e3c8036357c6.png)
+![](http://i4.buimg.com/591195/e398e3c8036357c6s.png)
 
 ```
  =   将右边的值赋值给左边的变量
