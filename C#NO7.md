@@ -124,11 +124,90 @@ class Suiji
 	}	
 }
 ```
+```C#
+//进入程序，提示输入年份和月份，可以打印出该年中该月的日历
+//进入程序，提示输入年份，可以打印出该年中每月的日历
 
+using System;
 
+class Program
+    {
+        private static int CalculateWeekByDay(int year, int month, int day) 
+    {
+            DateTime dt = new DateTime(year, month, day);//创建一个DateTime对象，传入年月日
+            return (int)dt.DayOfWeek;//返回这一天是星期几转成int类型
+        }
 
+        private static bool IsLeapYear(int year)//判断是否为闰年
+        {
+            //if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+            //    return true;
+            //else
+            //    return false;
+            return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+        }
 
+        private static int GetDayByMonth(int year, int month) 
+        {
+            //如果月份输入有误 则退出方法 返回0天
+            if (month < 1 || month > 12) return 0;
 
+            switch (month) {
+                case 2:
+                    //if (IsLeapYear(year))
+                    //    return 29;
+                    //else
+                    //    return 28; 
+                    return IsLeapYear(year) ? 29 : 28;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    return 30;
+                default:
+                    return 31;
+            }
+        }
+
+        //返回值: void 
+        //方法名称：PrintMonthCalendar
+        //参数:  月份  年份
+        private static void PrintMonthCalendar(int year, int month) 
+        {
+            // -- 显示表头  Console.WriteLine("日\t一\t二");
+            Console.WriteLine("{0}年{1}月", year, month);
+            Console.WriteLine("日\t一\t二\t三\t四\t五\t六");
+            //* -- 根据1号星期数显示空白 Console.Write("\t");
+            int week = CalculateWeekByDay(year, month, 1);
+            for (int i = 0; i < week; i++)
+                Console.Write("\t");
+            //* -- 根据当月总天数显示日
+            int days = GetDayByMonth(year, month);//此年此月有多少天
+            for (int i = 1; i <= days; i++) {
+                Console.Write("{0}\t", i);
+                //* -- 逢六换行 Console.WriteLine();
+                if (CalculateWeekByDay(year, month, i) == 6)
+                    Console.WriteLine();
+            }
+        }
+
+        private static void PrintYearCalendar(int year) 
+        {
+            for (int i = 1; i <= 12; i++) //打印12次
+            {
+                PrintMonthCalendar(year, i);//调用打印月历方法，传入参数
+                Console.WriteLine();
+            }
+        }
+
+        static void Main(string[] args) 
+        {
+            Console.WriteLine("请输入年份：");
+            int year = int.Parse(Console.ReadLine());
+            PrintYearCalendar(year);
+        }
+    }
+```
 
 
 
