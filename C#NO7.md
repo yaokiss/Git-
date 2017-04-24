@@ -141,35 +141,416 @@ class ArrayDemo
 }
 ```
 
+### 二维数组的使用
+
+
+二维数组需要使用循环潜逃进行遍历
+```C#
+class ArrayDemo
+{
+  public static void Main(string[] args)
+  {
+    int[,] arr = {{3,0,8}, {50,26,78}, {12,30,61}};
+
+    //使用for循环遍历
+    for(int i = 0; i < 4; i++)
+    {
+      for(int j = 0; j < 3; j++)
+      {
+        Console.WriteLine(arr[i, j]);//输出数组中每个数据
+      }
+    }
+
+    //使用foreach遍历
+    foreach(int Ele in arr)
+    {
+      System.Console.WriteLine(Ele);//输出数组中每个数据
+    }
+  }
+}
+```
+**注意。二维数组的索引也是从0开始
+
+
+## 一维数组求最值
+
+
+在一维数组的所有数据中找到最值（最大或最小）并输出，两种方法。
+
+
+第一种：可以假设初始化最大值为数组里面索引为0的数字，然后依次拿后面的数据进行对比。
+
+```C#
+class ArrayDemo
+{
+  public static void Main(string[] args)
+  {
+    MaxMin2(); //调用方法，得到最大的数据
+  }
+
+  public static void MaxMin2()
+  {
+    int[] arr = {-3, -15, -55, -6, -28, -78};
+
+    int Max = arr[0];
+
+    for(int i = 0; i < arr.Length; i++)
+    {
+      if(arr[i] > Max)
+      {
+        Max = arr[i];
+      }
+    }
+    System.Console.WriteLine(Max);
+  }
+}
+```
+第二种：初始化最大的数的角标，然后依次用后面的数据进行比较，得到最大的数字的角标。
+```C#
+class ArrayDemo
+{
+  public static void Main(string[] args)
+  {
+    MaxMin2(); //调用方法，得到最大的数据
+  }
+
+  public static void MaxMin3()
+  {
+    int[] arr = {-3, -15, -55, -6, -28, -78};
+
+    int MaxIndex = 0; //初始化最大索引值
+
+    for(int i = 0; i < arr.Length; i++)
+    {
+      if(arr[i] > arr[MaxIndex])
+      {
+        MaxIndex = i;
+      }
+    }
+    System.Console.WriteLine(arr[MaxIndex]);
+  }
+}
+```
+
+
+### 一维数组选择排序
+
+将数组中的数据排序。基本思想：首先以一个元素为基准，从一个方向开始扫描，如从左到右。以A[0]为基准，接下来从A[0]….A[9]中找出最小的元素，将其与A[0]交换。然后将其基准位置右移一位，重复上面的动作，比如，以A[1]为基准，找出A[1]~A[9]中最小的，将其与A[1]交换。一直进行到将基准位置移到数组最后一个元素时排序结束。
+
+```C#
+class ArrayDemo
+{
+  public static void Main(string[] args)
+  {
+    SelectSort();
+  }
+
+  public static void SelectSort()
+  {
+    int[] arr = {35, 20, 12, 110, 4, 57};
+
+    for(int x = 0; x < arr.Length - 1; x++) //注意为什么 -1
+    {
+      for(int y = x + 1; y < arr.Length; y++)//注意int y = 1 + x ,形成变化的量
+      {
+        if(arr[x] > arr[y])
+        {
+          int temp = arr[x];
+          arr[x] = arr[y];
+          arr[y] = temp;
+        }
+      }
+    }
+
+    foreach(int ele in arr)
+    {
+      System.Console.WriteLine(ele);
+    }
+  }
+}
+```
+
+### 一维数组冒泡排序
+
+基本思想：将相邻的两个数比较，将较小的数调到前头；有n个数就要进行n-1趟比较，第一次比较中要进行n-1次两两比较，在第j趟比较中，要进行n-j次两两比较。
+
+```C#
+class ArrayDemo
+{
+  public static void Main(string[] args)
+  {
+    BubbleSort();
+  }
+
+  public static void BubbleSort()
+  {
+    int[] arr = {35, 20, 12, 110, 4, 57};
+
+    for(int x = 0; x < arr.Length - 1; x++) //为什么 -1
+    {
+      for(int y = 0; y < arr.Length - x - 1; y++)  //为什么 - 1 - x 
+      {
+        if(arr[y] > arr[y + 1])
+        {
+          int temp = arr[y + 1];
+          arr[y + 1] = arr[y];
+          arr[y] = temp;
+        }
+      }
+    }
+
+    foreach(int ele in arr)
+    {
+      System.Console.WriteLine(ele);
+    }
+  }
+}
+```
+
+### 一维数组二分法查找
+
+采用二分法查找时，数组中的数据需是有序不重复的。 基本思想：假设数据是按升序排序的，对于给定值 x，从序列的中间位置开始比较，如果当前位置值等于 x，则查找成功；若 x 小于当前位置值，则在数列的前半段中查找；若 x 大于当前位置值则在数列的后半段中继续查找，直到找到为止。
+
+**折半查找前提：数组必须是有序的**
+
+```C#
+class ArrayDemo
+{
+  public static void Main(string[] args)
+  {
+    int index = HalfSerach(45);
+    System.Console.WriteLine(index);
+  }
+
+  public static int HalfSearch(int key)
+  {
+    int[] arr = {13, 15, 19, 28, 33, 45, 78, 106};
+
+    int mid, min, max;
+    min = 0;
+    max = arr.Length - 1;
+    mid = (min + max) / 2;
+
+    while(arr[mid] != key)
+    {
+      if(key > arr[mid])
+      {
+        min = mid + 1;//如果条件成立，则最小索引 = 中间索引 + 1
+      }
+      else if(key < arr[mid])
+      {
+        max = mid - 1;//如果条件成立，则最大索引 = 中间索引 - 1
+      }
+
+      if(min > max)
+      {
+        return -1;//如果min > max则意味着没有找到目标，可以返回-1
+      }
+
+      mid = (min + max) / 2;
+    }
+    return mid;
+  }
+}
+```
 
 
 
+## 课上
 
+```C#
+class ArrayDemo2
+{
+  static void Main(string[] args)
+  {
+		int[] arr = {10, 7, 55, 86, 79, 22};
+		//Max1(arr);
+		//Max2(arr);
+		//SelectSort(arr);
+		BubbleSort(arr);
+		//string str = "hello";//字符串可以看作是一个字符类型的数组
+		//System.Console.WriteLine(str[1]);
+		//System.Console.WriteLine(str.Length);//字符串的长度
+		//char[] arr = {'h', 'e', 'l', 'l', 'o', 'w'};
+		//System.Console.WriteLine(arr[1]);
+  }
+  //求最值，假设数组中的最大数
+  static void Max1(int[] arr)
+  {
+  	int max = arr[0];	
+  	
+  	for(int i = 1; i < arr.Length; i++)
+  	{
+  		if(arr[i] > max)
+  		{
+  			max = arr[i];
+  		}
+  	}
+  	System.Console.WriteLine(max);
+  }
+  
+  //假设最大数的索引值
+  static void Max2(int[] arr)
+  {
+  	int maxIndex = 0;
+  	
+  	for(int i = 1; i < arr.Length; i++)
+  	{
+  		if(arr[i] > arr[maxIndex])
+  		{
+  			maxIndex = i;
+  		}
+  	} 	
+  	System.Console.WriteLine(arr[maxIndex]);
+  }
+  
+  //选择排序
+  static void SelectSort(int[] arr)
+  {
+  	for(int x = 0; x < arr.Length; x++)
+  	{
+  		for(int y = x + 1; y < arr.Length; y++)
+  		{
+  			if(arr[x] > arr[y])
+  			{
+  				
+  				Swap(arr, x, y);
+  				/*
+  				int temp = arr[x];
+  				arr[x] = arr[y];
+  				arr[y] = temp;*/
+  			}
+  		}
+  	}
+  	
+  	foreach(int Ele in arr) {
+  		System.Console.WriteLine(Ele);
+  	}
+  }
+  
+  static void BubbleSort(int[] arr)
+  {
+  	for(int x =0; x < arr.Length -1; x++)    //arr.Length - 1是因为最后一轮的0与0比较不需要
+	  {
+	    for(int y =0; y < arr.Length - 1 - x; y++) 
+	    {
+	      if(arr[y] > arr[y + 1]) 
+	      {
+	        Swap(arr, y, y + 1);
+	        /*
+	        int temp = arr[y];
+	        arr[y] = arr[y + 1];
+	        arr[y + 1] = temp;
+	        */
+	      }
+	    }
+		}
+		foreach(int Ele in arr) 
+		{
+  		System.Console.WriteLine(Ele);
+  	}
+  }
+  
+  static void Swap(int[] arr, int a, int b)
+  {
+  	int temp = arr[a];
+  	arr[a] = arr[b];
+  	arr[b] = temp;
+  }
+}
+```
+```C#
+/*
+数组：同一种类型的数据的集合，可以叫做容器。
+数组的特点：
+1，里面存储的数据必须是同一类型的
+2，数组可以将里面数据进行编号，从0开始，索引，角标
 
+定义数组的格式：
 
+第一种：
+元素类型[] 数组名 = new 元素类型[元素个数或数组长度]；
+第二种：
+元素类型[] 数组名 = new 元素类型[]{元素, 元素….}；
+元素类型[] 数组名 = {元素, 元素….}；
 
+什么时候使用什么样的格式？
+第一种可以叫动态数组。需要一个数组，但是不知道往里面存什么数据。
+第二种可以叫静态数组。需要一个数组，直到里面存什么数据。
 
+编程过程中，会遇到2种错误
+1：语法错误（编译时）
+2：异常错误（运行时）
 
+什么时候使用数组？只要数据一多就应该用数组。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+对于数组的操作：1，存；2，取。核心思想：对索引的操作
+*/
+class ArrayDemo
+{
+  static void Main(string[] args)
+  {
+		//int a = 3;
+		/*数组的第一种定义格式：
+		int[] arr = new int[3];//定义一个数组，里面可以存储3个int类型数据
+		//arr[1] = 10;
+		//arr[2] = 20;
+		//arr[0] = 30;
+		//arr[3] = 40;
+		//数组可以不赋值，有默认值
+		System.Console.WriteLine(arr[0]);
+		System.Console.WriteLine(arr[1]);
+		System.Console.WriteLine(arr[2]);
+		//System.Console.WriteLine(arr[3]);IndexOutOfRangeException，索引越界异常
+		*/
+		
+		/*数组的第二种定义格式：
+		int[] arr = new int[]{10, 20, 30};
+		
+		System.Console.WriteLine(arr[0]);
+		System.Console.WriteLine(arr[1]);
+		System.Console.WriteLine(arr[2]);
+		//System.Console.WriteLine(arr[3]);
+		
+		int[] arr = {10, 20, 30};//简单
+		System.Console.WriteLine(arr[2]);
+		
+		
+		int[] arr = {10, 25, 33, 16};
+		
+		//使用循环遍历数组
+		for(int i = 0; i < 4; i++)
+		{
+			//System.Console.WriteLine(arr[i]);
+			arr[i] = i;
+		}
+		*/
+		
+		/*foreach循环，只能用来遍历
+			foreach(数据类型 标识符 in 容器)
+			{
+			}
+		
+		int[] arr = {10, 25, 33, 16};
+		foreach(int ele in arr)
+		{
+			System.Console.WriteLine(ele);
+		}
+		*/
+		
+		int[] arr = {10, 25, 33, 1610, 25, 33, 1610, 25, 33, 1610, 25, 33, 1610, 25, 33, 1610, 25, 33, 16};
+		//数组的Length属性，可以获取一个数组的长度
+		//System.Console.WriteLine("数组的长度是：" + arr.Length);
+		
+		/*使用循环遍历数组*/
+		for(int i = arr.Length - 1; i >= 0; i -= 2)
+		{
+			System.Console.WriteLine(arr[i]);
+		}
+		//数组的最大索引 = 长度 - 1；
+  }
+}
+```
 
 
 
