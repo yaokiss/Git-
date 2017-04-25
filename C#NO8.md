@@ -208,6 +208,114 @@ class StringDemo
   }
 }
 ```
+## StringBuilder
+
+StringBuilder同样是对字符串操作的类。专门针对字符串的增删查改，通过StringBuilder创建的字符串是可以被修改的
+
+string本身是表示不可变的字符串类型。  Stringbuilder表示可变的字符串类型
+
+StringBuilder常见的内容
+```C#
+常见属性：
+Length   	  获取或设置当前 StringBuilder 对象的长度
+Capacity    获取或设置可包含在当前实例所分配的最大字符数
+
+构造函数：
+StringBuilder(String)，使用指定的字符串初始化 StringBuilder 类的新实例。
+StringBuilder(String, Int32), 用指定的字符串和容量初始化 StringBuilder 类的新实例。
+
+常见方法：
+Append(String)          添加。将指定字符串追加到当前StringBuilder的结尾。
+Insert(Int32, String)   插入。将字符串或对象插入到当前StringBuilder对象的指定索引处。
+Remove(Int32, Int32)    移除。从当前StringBuilder中移除指定数量的字符
+Replace(String, String) 替换。将当前字符串中出现的所有指定字符串的替换为其他指定字符串
+
+```
+StrigBuilder的声明
+```C#
+using System.Text   //使用StringBuilder需要单独引用其所在的命名空间
+
+class Demo
+{
+  public static void Main(string[] args)
+  {
+    //声明StringBuilder对象方式1：无参构造函数，表示只有该对象的容器，里面没有具体字符串，可以通过Append()方法进行添加
+    StringBuilder sb1 = new StringBuilder();
+    Console.WriteLine(sb1.Length);  //字符串长度为0
+    Console.WriteLine(sb1.Capacity);    //默认容量为多少呢？
+
+    //声明StringBuilder对象方式2：带参构造函数，直接声明了可变字符串
+    StringBuilder sb2 = new StringBuilder("hello world");
+    Console.WriteLine(sb1.Length);  //字符串长度为11
+    Console.WriteLine(sb1.Capacity);    //容量和sb1一样吗？
+    }
+}
+```
+**注意：大写的String和小写string没有区别，两者可以完全互换**
+
+对于String类
+```C#
+class Demo
+{
+  public static void Main(string[] args)
+  {
+    string str1 = "hello";
+    string str2 = "world";
+    str2 = str1 + str2;
+    Console.WriteLine(str2);   //结果为helloworld
+  }
+}
+```
+表面上看似是str2的"world"直接追加到str1的"hello"的后面，但实际上是在内存中有创建了一个字符串对象为helloworld，也就是说短短三行代码就在内存中创建了三个对象，如果我们持续的对同一个String字符串做类似的操作。每一次都要重新创建一个对象，如果操作过多，消耗内存，降低效率，这就是不可变性，所以使用StringBuilder来创建修改频繁的字符串：
+```C#
+class Demo
+{
+  public static void Main(string[] args)
+  {
+    //如果想使用可变字符串，要先找StringBuilder，向使用它，先创建对象。
+    StringBuilder sb = new StringBuilder();
+    StringBuilder sb2 = new StringBuilder();//可以创建多个StringBuilder对象
+
+    System.Console.WriteLine(sb.Capacity);//StringBuilder默认可以存储16个字符
+    System.Console.WriteLine(sb.Length);//没有字符为0
+    System.Console.WriteLine("----------------");
+	
+    sb.Append("good");//使用Append方法向sb中添加字符串
+    System.Console.WriteLine(sb.Length);//长度为4
+    System.Console.WriteLine(sb);//打印出该字符串
+    System.Console.WriteLine("----------------");
+
+    sb.Append("morning,吃饭了吗，嘿嘿");//添加字符串
+    System.Console.WriteLine(sb.Length);//打印19，为当前是19个字符
+    System.Console.WriteLine(sb.Capacity);//打印32，如果超出StringBuilder的范文，则可以自动成倍扩容
+    System.Console.WriteLine(sb);//打印最终的字符串
+  }
+}
+```
+```C#
+using System.Text;
+
+class StringBuilderDemo
+{
+  static void Main(string[] args)
+  {
+		Show1();
+  }
+  
+  static void Show1()
+  {
+  	StringBuilder sb = new StringBuilder("hello");//创建StringBuilder对象
+  	
+  	sb.Append("world,goodmorning");//通过Append方法对sb对象中的字符串进行添加
+  	sb.Insert(4, "吃饭了吗");
+  	
+  	System.Console.WriteLine(sb.Capacity);//16,成倍增加
+  	System.Console.WriteLine(sb.Length);//0
+  	System.Console.WriteLine(sb);
+  }
+}
+```
+
 
 
 
