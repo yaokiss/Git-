@@ -254,8 +254,197 @@ class B : A
 }
 ```
 
+对于子父类中相同声明的函数有两种处理办法：
+
+1. 隐藏
+
+1. 覆盖（重写，复写），override
+
+对于隐藏和覆盖。最后都是调用子类中的内容。区别就在于多态中的使用，绝大多数情况下，对于方法，都是用覆盖进行处理
+
+覆盖的注意事项：
+
+1. 子类方法覆盖父类方法时，父类方法必须是public修饰的，子类也得是public
+
+1. 当需要实现覆盖时，需要把父类方法修饰成virtual,子类中什么方法覆盖就修饰成override
+
+权限修饰符：
+
+public 公有的，权限最大，其他的任何程序都能够访问
+
+private 私有的，权限最小，只有所在的类的内部才能访问
+
+protected 受保护的，权限中等，只有所在的类的内部以及其子类可以访问
+
+```C#
+class InheritDemo
+{
+  static void Main(string[] args)
+  {
+		new B().Show();
+  }
+}
+
+class A
+{
+	private int num = 3;
+	
+	public int Num
+	{
+		get{return num;}
+		set{num = value;}	
+	}
+	
+	//virtual关键字，修饰符
+	public virtual void Show()//子父类方法声明相同，被virtual修饰的方法叫虚方法
+	{
+		System.Console.WriteLine("A");
+	}
+}
+
+class B : A
+{
+	//private new int num = 4;
+	
+	public void Method()
+	{
+		System.Console.WriteLine(num);	
+	}
+	
+	/*
+	使用隐藏处理
+	public new void Show()
+	{
+		System.Console.WriteLine("B");	
+	}
+	*/
+	
+	//子类可以把父类虚方法进行覆盖，override也是关键字，表示对父类方法的覆盖
+	public override void Show()
+	{
+		System.Console.WriteLine("B");
+	}
+}
+```
+```C#
+//定义一个父类，里面有Show方法为打印"Fu"
+  class Fu
+  {
+    public virtual void Show()  //用virtual关键字修饰需要被子类重新实现的方法，也可叫虚方法
+    {
+      Console.WriteLine("Fu");
+    }
+  }
+
+  //定义一个子类继承父类，子类有自己的Show方法为打印"Zi"
+  class Zi : Fu
+  {
+    public override void Show()   //重新实现父类的Show方法
+    {
+      Console.WriteLine("Zi");
+    }
+  }
+
+  //Main函数
+  Main()
+  {
+    new Zi().Show();  //调用“Show()”方法会打印出子类的方法"Zi"
+  }
+```
+
+## sealed关键字
 
 
+实例化子类。会先调用父类的无参构造函数。只有实例化父类，子类才能使用父类里的内容
+
+sealed关键字：密封的。可以修饰类及方法
+
+修饰类时，表示这个类不能被继承，
+
+修饰方法时，表示这个方法不能被重写，但是sealed修饰的方法必须由override修饰。必须同时出现。
+
+继承的弊端：在一定程度上打破了封装性，
+
+sealed特点：
+
+1. sealed是修饰符。可以修饰类、方法、变量（字段）
+
+1. 修饰的类不能被继承。
+
+1. sealed修饰的方法不能被覆盖，必须和override一起
+
+```C#
+class InheritDemo2
+{
+  static void Main(string[] args)
+  {
+		new B();
+  }
+}
+
+ class A
+{
+	public A()
+	{
+		System.Console.WriteLine("A");	
+	}
+	
+	public A(int a)
+	{
+		System.Console.WriteLine(a);
+	}
+
+	public virtual void Show()
+	{
+		
+	}
+}
+
+class B : A
+{
+	public B() : base(10)//默认调用父类的无参构造函数
+	{
+		System.Console.WriteLine("B");	
+	}
+	
+	//sealed修饰方法时必须要和override一起使用，表示此方法不能被重写。
+	public sealed override void Show()
+	{
+		System.Console.WriteLine("B");
+	}
+}
+
+class C : B
+{
+	public override void Show()
+	{
+		System.Console.WriteLine("C");
+	}
+}
+
+/*
+在C#中，默认所有类都是Object的子类。Object是所有类的父类。
+class A : Object
+{
+	public A() : base()
+	{
+		return;
+	}
+}
+*/
+
+/*继承的弊端
+sealed class Demo
+{
+	底层重要资源	
+}
+
+class Demo2 : Demo
+{
+	System.Console.WriteLine("haha ");
+}
+*/
+```
 
 
 
